@@ -51,7 +51,7 @@ def get_platform_architecture():
         architecture = '64'
     elif sys.platform.startswith('win'):
         platform = 'win'
-        architecture = '32'
+        architecture = '64' if (sys.maxsize + 1) == 2 ** 63 else '32'
     else:
         raise RuntimeError('Could not determine chromedriver download URL for this platform.')
     return platform, architecture
